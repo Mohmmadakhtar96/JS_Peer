@@ -25,19 +25,18 @@ function shoot()
 {
     bulletCounter++;
     var bullet = document.createElement("div");
-    bullet.setAttribute("id","bullet"+bulletCounter);
-    bullet.setAttribute("style", "position:fixed; bottom: 40px");
-    //console.log(bullet)
     bullet.innerHTML = "*";
-    //bullet.style.left = pLeft+75+"px";
+    bullet.setAttribute("id","bullet"+bulletCounter);
+    bullet.setAttribute("style", "position:absolute; bottom: 40px");
+    document.getElementsByTagName('body')[0].appendChild(bullet);
+    bullet.style.left = pLeft+75+"px";
     
-    setInterval(function() { shootUP(bullet); }, 500);
+    setInterval(function() { shootUP(bullet); }, 50);
 }
-var bulletBottom = 30;
+var bulletBottom = 40;
 function shootUP(currentBullet)
 {
     var bullet = currentBullet;
-    console.log(bullet);
     bulletBottom += 2;
     bullet.style.bottom = bulletBottom+"px";
 }
@@ -47,7 +46,6 @@ function movePlayer(e)
     var player = document.getElementById("gun");
     if(window.event)
     {
-        console.log(e.key);
         if(e.key=='d')
         {
             pLeft+=3;
@@ -58,13 +56,13 @@ function movePlayer(e)
             pLeft-=3;
             player.style.left = pLeft+"px"
         }
-        if(pLeft<-20)
+        if(pLeft<-30)
         {
-            pLeft = 110;
+            pLeft = -30;
         }
-        else if(pLeft>110)
+        else if(pLeft>130)
         {
-            pLeft = -20;
+            pLeft = 130;
         }
     }
 }
